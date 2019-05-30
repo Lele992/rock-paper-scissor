@@ -1,4 +1,3 @@
-<script>
 function computerPlay()
 {
     let computerPick=Math.floor(Math.random()*4);
@@ -15,64 +14,80 @@ function computerPlay()
     }
 }
 
-function playRound(computerPlay,playerPlay)
+function getImage(selection)
 {
-    if(computerPlay===playerPlay)
-        return 0;
-    switch(computerPlay)
+    switch(selection)
+    {
+        case "Rock":
+            return "https://static.thenounproject.com/png/477914-200.png";
+        case "Paper":
+            return "https://sitejerk.com/images/rock-paper-scissors-png.png";
+        case "Scissor":
+            return "https://static.thenounproject.com/png/477919-200.png";
+    }
+}
+
+function playRound(e)
+{   
+    playerImg.firstChild.remove();
+    CPUImg.firstChild.remove();
+    const playerPlay=e.target.getAttribute("choice");
+    let player_Img=document.createElement("img");
+    let CPU_Img=document.createElement("img");
+    player_Img.setAttribute("src",getImage(playerPlay));
+    CPU_Img.setAttribute("src",getImage(computerChoice));
+    playerImg.appendChild(player_Img);
+    CPUImg.appendChild(CPU_Img);
+
+    if(computerChoice===playerPlay){
+        draw();
+        return;
+    }
+    switch(computerChoice)
     {
         case "Rock":
             if(playerPlay==="Paper")
-                return 1;
+                win();
             else
-                return -1;
+                lose();
+            return;
         case "Paper":
             if(playerPlay==="Scissor")
-                return 1;
+                win();
             else
-                return -1;
+                lose();
+            return;
         case "Scissor":
             if(playerPlay==="Rock")
-                return 1;
+                win();
             else
-                return -1;
+                lose();
+            return;
     }
 }
 
-function game()
+function win()
+{  
+    PlayerPoint+=1;
+    divPlayer.innerHTML="You:"+PlayerPoint;
+}
+
+function draw()
 {
-    let CPUPoint=0;
-    let PlayerPoint=0;
-    for(round=1;round<=5;round++)
-    {
-        let computerChoice=computerPlay();
-        let playerChoiceUnformatted=prompt("Choose one: Rock - Paper - Scissor","");
-        let playerChoiceFormatted=playerChoiceUnformatted.charAt(0).toUpperCase()+playerChoiceUnformatted.slice(1).toLowerCase();
-        let result=playRound(computerChoice,playerChoiceFormatted);
-        console.log("-Round "+round+"-");
-        console.log("CPU: "+computerChoice+" You: "+playerChoiceFormatted);
-        if(result===-1)
-        {
-            console.log("You lose! :(");
-            CPUPoint+=1;
-        }
-        else if(result===1)
-        {
-            console.log("You win! :)");
-            PlayerPoint+=1;
-        }
-        else
-            console.log("It'a a draw! :|");
-        console.log("CPU: "+CPUPoint+" You: "+PlayerPoint+".");
-    }
-    console.log("-END OF GAME-");
-    console.log("CPU: "+CPUPoint+" You: "+PlayerPoint+".");
-    if(CPUPoint>PlayerPoint)
-        console.log("YOU LOSE! :'(");
-    else if(CPUPoint===PlayerPoint)
-        console.log("DRAW! :/");
-    else
-        console.log("YOU WIN! :D");
+
 }
 
-</script>
+function lose()
+{
+    CPUPoint+=1;
+    divCPU.innerHTML="CPU:"+CPUPoint;
+}
+
+let round=1;
+let CPUPoint=0;
+let PlayerPoint=0;
+let computerChoice=computerPlay();
+const buttons=Array.from(document.querySelectorAll(".choice-img"));
+buttons.forEach(button => button.addEventListener("click", playRound));
+const divPlayer=document.querySelector(".playerScore");
+const divCPU=document.querySelector(".CPUScore");

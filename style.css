@@ -1,0 +1,43 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    color:rgb(230,230,230);
+    font-size:16;
+    background: rgb(30,30,30);
+}
+
+.tablescore{
+    display:flex;
+    flex-flow: row;
+    align-items: center;
+    align-content:center;
+    justify-content: space-between;
+    height:100px;
+}
+
+.selection{
+    display:flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top:40px;
+}
+
+.container{
+    display:flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    height:500px;
+}
+
+#vertical-line{
+    width:0;
+    height:400px;
+    border: 1px;
+    border-style: dashed;
+    border-color: rgb(255,255,255);
+}
+
+.choice-img{
+    cursor: pointer;
+    width:100px;
+}
