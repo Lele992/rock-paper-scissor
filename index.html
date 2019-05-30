@@ -6,29 +6,32 @@
     </head>
     <body>
         <div class="tablescore">
-            <div class="playerScore">You:0</div>
+            <center class="score">
+                <h2>PLAYER</h2>
+                <h1 class="playerScore">0</h1>
+            </center>
             <div class="selection">
-                <div>ROUND 1</div>
-                <div>SELECT ONE</div>
-                <div>
+                <h1>START</h1>
+                <h3>SELECT ONE</h3>
+                <div class="buttons">
                     <img class="choice-img" choice="Rock" src="https://hacktoberfest.lingonsaft.com/images/rock.png">
                     <img class="choice-img" choice="Paper" src="https://hacktoberfest.lingonsaft.com/images/paper.png">
                     <img class="choice-img" choice="Scissor" src="http://chittagongit.com/images/rock-paper-scissors-icon/rock-paper-scissors-icon-5.jpg">
                 </div>
             </div>            
-            <div class="CPUScore">CPU:0</div>
+            <center class="score">
+                <h2>COMPUTER</h2>
+                <h1 class="CPUScore">0</h1>
+            </center>
         </div>
         <div class="container">
-            <div>
-                buttons
-            </div>
             <div id="playerImg">
             </div>
-            <div id="vertical-line"></div>
+            <center>
+                <h1 class="victory"></h1>
+                <h2 class="points"></h2>
+            </center>
             <div id="CPUImg">
-            </div>
-            <div>
-                buttons
             </div>
         </div>
         <script src="script.js"></script>
